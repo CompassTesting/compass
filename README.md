@@ -1,3 +1,3 @@
 # compass
-For testing GA
+For testing GAT
 Initial commit
