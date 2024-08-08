@@ -1,0 +1,111 @@
+= Specifying your default Planning Worksheet setup
+:imagesdir: ../images
+
+The look of the Planning Worksheet can be set using a number of INI settings. The following sections briefly describe the defaults and options.
+
+== Determining how the screen is split
+
+By default, the Planning Worksheet is split horizontally, with the *Available Trips* grid on top and the *Available Resources* grids on the bottom. You can use the [Dispatch]PlannerScreenMode setting in your TTS50.ini file to have the screen split vertically:
+
+image:01e-setup/image1.png["The Available Trips and Available Resources grids side by side.",width=624,130]
+
+Regardless of which way you have your default set, you can temporarily override the INI setting using these commands from the *Options* menu:
+
+* *Horizontal Screen Split*
+
+* *Vertical Screen Split*
+
+The currently active command displays a check mark next to it in the *Options* menu. When you exit the Planning Worksheet, the next time you access it, the screen will display according to the value set in your TTS50.ini file.
+
+== Specifying the zoom factor for the Planning Worksheet grids
+
+While in the Planning Worksheet, you can manually change the zoom percentage of the *Driver*, *Tractor*, *Trailer*, or *Trips* grid by doing the following:
+
+. Right-click in the grid.
+
+. From the shortcut menu, select *Zoom View In/Out*. +
+The Zoom window opens.
++
+image:01e-setup/image2.png["The Zoom window.",width=297,123]
+
+. Select one of the pre-set magnification percentages, or enter a custom magnification percent.
+
+. Click *OK*.
+
+These settings allow you to specify the magnification to be automatically applied to the grids when you open and retrieve data the Planning Worksheet:
+
+* [Dispatch]AvailableDriverZoom
+
+* [Dispatch]AvailableTractorZoom
+
+* [Dispatch]AvailableTrailerZoom
+
+* [Dispatch]AvailableTripsZoom
+
+When you are displaying the image:01e-setup/image3.png["The All Resources grid icon.",width=23,24] *All Resources* grid, these settings can be used to set the magnification level for each of the three grids that are displayed: *Drivers*, *Tractors*, and *Trailers*.
+
+* [Dispatch]AvailableDriver2Zoom
+
+* [Dispatch]AvailableTractor2Zoom
+
+* [Dispatch]AvailableTrailer2Zoom
+
+== Specifying the default Available Resources tab
+
+By default, the *Available Resources* grid displays the *Tractor/Trip Segment*, the *Driver*, and the *Trailer* tabs at the same time:
+
+image:01e-setup/image4.png["The Tractor/Trip Segment, Driver, and Trailer tabs side by side.",width=624,185]
+
+You can change which tab displays by default using the [Dispatch]PlannerAssetMode setting in your TTS50.ini file.
+
+== Setting the refresh rate and behavior of the Planning Worksheet
+
+With input from multiple users or updates from TotalMail, dispatchers need frequent updates to their worksheet. An auto-refresh feature allows you to define how often the Planning Worksheet will automatically update all its fields. Both the Trip and Resource Grids will automatically refresh, as though you selected *Retrieve*.
+
+When activated, the auto-refresh timer will continue to count as long as no action is detected in the Planning Worksheet. The timer will reset to zero when the user clicks on a trip or a resource line or when another window is opened. During busy times, your activity may thus re-zero the timer several times before the auto-refresh can occur. However, you can still use the *Retrieve* button for a manual update or set the timer to a shorter duration.
+
+Several settings can be used to determine when the data in the Planning Worksheet is automatically refreshed.
+
+=== Enabling the auto-refresh feature
+
+By default, the Planning Worksheet does not automatically refresh itself while you are working in it. If you want, you can enable the auto-refresh feature with the [Dispatch]RefreshPlannerRate setting.
+
+=== Overriding the auto-refresh idle period
+
+// First available in TMWSuite: 2012.11_07.0291
+
+When you have the auto-refresh feature enabled, and you switch to another window or application, the timer for the idle period you designated in the [Dispatch]RefreshPlannerRate setting is suspended or paused.
+
+With the [Dispatch]RefreshPlannerAlwaysOn setting, you can set up your system to ignore the pause, and have the idle period timer continue to refresh the Planning Worksheet grids. This feature is especially useful if you are using dual monitors, with the Planning Worksheet displayed in one monitor and another application displayed in the other.
+
+=== Refreshing the Available Trips grid after a save 
+
+// First available in TMWSuite: 2003.03_03.0133
+
+When you use the *Save* command in the Planning Worksheet, the system refreshes the information displayed in the grids, saves your changes, and continues to highlight the currently selected row of data.
+
+Instead, you can use the [Dispatch]PlanningWorksheetOldRefresh setting to have the system scroll to the top of the list displayed in the *Available Trips* grid when you save.
+
+In this illustration, [Dispatch]PlanningWorksheetOldRefresh=Y. The system scrolls to the top of the list.
+
+image:01e-setup/image5.png["The Available Trips grid with the scroll bar emphasized.",width=624,159]
+
+In this illustration, [Dispatch]PlanningWorksheetOldRefresh=N. The currently highlighted row stays in view.
+
+image:01e-setup/image6.png["The Available Trips grid with the scroll bar emphasized. The highlighted row is from higher up in the grid.",width=624,158]
+
+=== Overriding auto-refresh when changing views
+
+// First available in TMWSuite: 2012.11_07.0435
+
+The available views in the *Available Trips* and *Available Resources* grids can be customized for each dispatcher or dispatch group. Dispatchers can change to a different view by selecting it from the options in the *Trips* and *Resources* fields.
+
+By default, the system automatically refreshes the grids as soon as a different view is selected. You have the option to override auto-refresh and require users to refresh the grid manually by:
+
+* Pressing ENTER to refresh the grid.
+
+* Clicking *Refresh*.
+
+*Note:* For detailed instructions on how to customize views, see xref:pw02-views:02a-overview.adoc[].
+
+Use the PlanWorksheetAutoRetrieve General Info Table setting to override auto-refresh when a view is changed in the Planning Worksheet.
