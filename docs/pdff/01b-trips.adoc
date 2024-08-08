@@ -1,0 +1,771 @@
+= Available Trips grid details
+
+// Kecia Lynn 1/16/2024 I split out the large table into two for each grid type. More fields are unique than duplicated; it made no sense to combine the table.
+
+[width="100%",cols="17%,56%"]
+|===
+|*% Rev* a|
+Applicable for split trips. This field shows the percentage of revenue to which the resource is entitled. The value comes from the *Seg* *Alloc* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+. The field displays _100%_ by default, regardless of whether a carrier has been selected in the Advanced Carrier Selection window.
+
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Act Weight* |Custom field.
+
+|*Appt Date* a|
+Displays the delivery appointment date/time recorded for each order in the EDI 214 status document with the _Accepted_ status. If necessary, enter a different date/time; the information will not be updated in the 214.
+
+*Note:* The system populates the field automatically when you record Yes in the *String1* field of the ShowDeliveryAndAppointment General Info Table setting. If set to No, the date/time does not appear.
+
+|*Billed Charge* |Total charges for a pre-rated order.
+
+|*Billto Name* a|
+Displays the complete name of the Bill To company on the order.
+
+*Note:* If the trip involves consolidated orders, this field shows the Bill To for the first order.
+
+|*Bookedby* |User ID of the person who entered the order into the system.
+
+|*Brk %* a|
+Target profit percentage for a brokered load. The value in this field comes from the Advanced Carrier Selection window.
+
+*Notes:*
+
+[arabic]
+. By default, the target profit percent is 15%. However, you can use the [Misc]BrokerPercent setting in your TTS50.ini file to identify the percentage of profit you hope to make when you broker loads. When the percentage is shown in the Planning Worksheet, the system rounds the value up. For example, if your entry is BrokerPercent=12.5, the system displays 13% in this field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Carrier* |ID of the carrier to whom the trip was assigned.
+
+|*Cmd Code* |Commodity code that identifies the cargo.
+
+|*Cmd Count* a|
+Number of commodities recorded for the trip. The value recorded for the General Info Table setting cmd_total controls how the total is determined. There are two options:
+
+* Pieces
+
++
+The *Cmd Count* column displays the total number of pieces for all freight details on the order.
+
++
+*Notes:*
+
++
+If no count-based commodities are recorded for the order, the *Cmd Count* column displays a zero (0).
+
++
+If the order contains multiple freight details, some that are count-based and others that are not, only the total of the count-based details are shown in the *Cmd Count* column.
+
++
+If you have consolidated orders, the *Cmd Count* column shows the count-based total for all the orders.
+
++
+This option is the default, recorded in *String1*, for this setting.
+
+* Freight
+
++
+The *Cmd Count* column displays the total number of freight details recorded on the order.
+
+|*Comment* a|
+Free-form comment recorded for the trip segment.
+
+*Notes:*
+
+[arabic]
+. You can add or modify the comment directly on the *Available Trips* grid.
+. This column corresponds to the *Curr Segment Comment* field on the Trip Folder header.
+
+|*Company* a|
+For multi-company organizations, this is the company responsible for completing the trip.
+
+*Note:* Selections you make in the *Company* field on the Order Entry Folder and the Trip Folder display in the *Company* column.
+
+|*Cons ID* |ID of the company where the last drop occurs.
+
+|*Cons State* |Abbreviation for the state/province where the final drop is located.
+
+|*Consignee City* |City and state/province location of the last drop.
+
+|*Consignee Name* |Name of the company where the last drop occurs.
+
+|*Copy of Order* |Shows the number of the original order from which this order was copied (if applicable).
+
+|*D* a|
+Dispatch status indicator, color-coded:
+
+* _Black_
+
++
+No dispatch macro has been sent for this trip.
+
+* _Green_
+
++
+Tour or standard dispatch acceptance was received.
+
++
+*Note:* A tour is a group of moves.
+
+* _Yellow_
+
++
+Tour or standard dispatch was sent and, in the case of a tour, a Tour Number was created.
+
++
+*Note:* The Tour macro is used to accept/reject a group of moves; the Tour Number is created when the tour is accepted.
+
+* _Red_
+
++
+Tour or standard dispatch has been rejected.
+
+|*Delivery Date* a|
+In the *Available* *Resources* grid, displays the date/time the driver's departure from the drop location was actualized.
+
+In the *Available* *Trips* grid, displays the requested delivery date/time for the final drop entered in the *Req* *Delivery* field in Order Entry. If necessary, enter a different date/time.
+
+*Note:* The system populates the field automatically when you record Yes for *String1* of the ShowDeliveryAndAppointment General Info Table setting. If set to No, the date/time does not appear.
+
+|*Dest GeoLoc* |Free-form geographic identifier used when the destination company does not have a standard street address. Geo Locations are recorded in the company profile.
+
+|*Dest State* |Abbreviation for the state/province where the trip's last stop is to occur.
+
+|*Dest. Region1* |Destination city's dispatch region 1, which is established in the System Administration application. Dispatch regions are used to categorize loads for operational purposes.
+
+|*Dest. Region2* |Destination city's dispatch region 2, which is established in the System Administration application. Dispatch regions are used to categorize loads for operational purposes.
+
+|*Dest. Region3* |Destination city's dispatch region 3, which is established in the System Administration application. Dispatch regions are used to categorize loads for operational purposes.
+
+|*Dest. Region4* |Destination city's dispatch region 4, which is established in the System Administration application. Dispatch regions are used to categorize loads for operational purposes.
+
+|*Det* a|
+The system determines detention time by tracking the amount of time a driver spends at a stop before departing. After the arrival time at the stop is actualized manually or via a TotalMail form, the system periodically checks to see whether the departure time has been actualized. The color of the indicator corresponds to the detention status of the trip:
+
+* *Gray*
+
++
+The driver is en route from one stop to the next. The indicator displays in gray in two situations:
+
+** The arrival at the first stop has not been actualized.
+
+** The departure from a stop is complete, but the arrival at the next stop has not been actualized.
+
+* *Green*
+
++
+The arrival at a stop has been actualized, but tolerances for yellow alerts, red alerts and autobilling have not been exceeded.
+
+* *Yellow*
+
++
+The yellow alert tolerance for the stop type has elapsed.
+
+* *Red*
+
++
+The red alert tolerance for the stop type has elapsed.
+
+*Note:* For more information,
+refer to the https://learn.transportation.trimble.com/discover/result/?sub=LC/transportationmanagement/tmwsuite/productguides/detentiontracking/&fn=00.DetentionTrackingTOC.pdf&tl=Detention-Tracking-Table-Of-Contents[Detention Tracking^] guide.
+
+|*Disp Date* |Currently not functional.
+
+|*Distance* a|
+Total route miles.
+
+*Note:* This number is the sum of the miles between each stop.
+
+|*Driver1 ID* |ID of the lead driver assigned to the trip.
+
+|*Driver1 Name* |Name of the lead driver.
+
+|*Driver2 ID* |ID of the co-driver assigned to the trip.
+
+|*Driver2 Name* |Name of the co-driver.
+
+|*Drv Fleet* a|
+Indicates if the driver is a part of a fleet and identifies the fleet.
+
+*Note:* The Fleet options are defined in the Fleet label file in System Administration and maintained in individual resource profiles.
+
+|*Drv Status* a|
+Driver's current status:
+
+* _Available_
+
+* _Planned_
+
+* _On the road_
+
+|*Earliest* |Earliest acceptable date/time when the first event on the trip segment can occur.
+
+|*Earliest P/U* |Earliest acceptable time that the first stop can occur.
+
+|*Earliest Unld* |Earliest date/time that the final stop may occur.
+
+|*End Dt/Tm* |Date and time of the last event on the trip.
+
+|*Est Weight* |Custom field.
+
+|*Estimated* a|
+Estimated profit you will make, based on the carrier assigned to the trip. Estimated profit is calculated by subtracting the total carrier pay (line haul, fuel, and accessorials) for the trip from the total charges (line haul, fuel surcharge, and any accessorial charges) on the prerated order. The value in this field comes from the Advanced Carrier Selection window's *Estimated* field.
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*ExtraInfo1-15* |Custom fields used to record extra information. For more information,
+see "The Extra Information feature" in the _System Administration_ guide.
+// TODO add link ^^
+
+|*FeetAvailable* |Number of feet still available on assigned trailer; this data is sent by a driver via a TotalMail macro.
+
+|*Fgt Description* |Description of the cargo.
+
+|*Fin Dest ID* |ID of the company where the last event is to occur.
+
+|*Final Dest Address 1* |First street address line for the final destination.
+
+|*Final Dest Address 2* |Second street address line for the final destination.
+
+|*Final Dest City* |City, state/province, and county where the last event is to occur.
+
+|*Final Dest Name* |Name of the company where the last event is to occur.
+
+|*Fleet* a|
+Indicates if the lead driver is a part of a fleet and identifies the fleet. The fleet designation is recorded in the driver's profile.
+
+*Note:* The Fleet options are defined in the *Fleet* label file in System Administration.
+
+|*Fuel* a|
+Fuel surcharge calculated when the order was prerated. The value comes from the *Fuel Charge* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Fuel Pay* a|
+Estimated fuel surcharge cost for the trip. The value comes from the *Fuel* *Cost* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Geo Date* |Date and time the last Geofuel information was sent to the driver.
+
+|*L* a|
+*Late* indicator, which is color-coded to indicate whether a stop on a trip is late, or in danger of being late. By default, TMWSuite warns you when:
+
+* Trips in the *Available Trips* grid are approaching or past their pickup times.
+
+* Trips in the *Tractor/Trip Segment* grid are approaching or past their delivery times.
+
+By default, the system does not monitor interim stops and non-billable stops. Using the PlnWrkshtLateWarnMode General Info Table setting, you can configure both grids to monitor all billable and non-billable stops and events on a trip for lateness. For more information,
+see xref:pw01-layout:01f-late.adoc#_specifying_what_the_system_is_to_monitor_for_lateness[Specifying what the system is to monitor for lateness].
+
+The *Late* indicator displays in one of these colors:
+
+* _Red_
+
++
+Critical warning: A stop's scheduled arrival time is either imminent or past due.
+
+* _Yellow_
+
++
+Semi-critical warning: A stop is nearing its scheduled arrival time.
+
+* _Green_
+
++
+The scheduled arrival time of the stop is far enough in the future that the trip is not considered at risk of being late.
+
+* _White_
+
++
+Applicable only for the *Tractor/Trip Segment grid*. The trip has already been completed; a warning regarding stop time is no longer applicable for the trip.
+
+*Notes:*
+
+[arabic]
+. The Late indicator turns yellow or red when a stop's time is within a predefined number of minutes from the current system time. The _critical_ and _semi-critical_ periods are determined by your company using the [Misc]LateArrivalCrit and [Misc]LateArrivalWarn settings in your TTS50.ini file.
+. Suppose the _critical_ setting is [Misc]LateArrivalCrit=30 minutes and the _semi-critical_ setting is [Misc]LateArrivalWarn=300 minutes. The Late indicator will be yellow for any stops having scheduled arrival times within the next five hours. For stops with scheduled arrival times within 30 minutes or less, the indicator will be red.
+
+|*Latest P/U* |Latest acceptable date and time that the first event can occur.
+
+|*Latest Unld* |Latest date/time that the final stop may occur.
+
+|*Lgh Carrier* a|
+ID of the carrier assigned on the trip segment.
+
+*Note:* The *Lgh Carrier* column is not to be confused with the *Carrier* column. The columns are in different tables in your TMWSuite database. The *Lgh Carrier* column is part of the legheader table and the *Carrier* column is part of the event table
+
+|*Lgh Earliest Pu* |Earliest date/time that the first stop on a trip segment can occur.
+
+|*Lgh Earliest Unl* |Latest date/time that the last stop on a trip segment can occur.
+
+|*Lgh Latest Pu* |Latest date and time that the first stop on the trip segment can occur.
+
+|*Lgh Latest Unl* |Latest date and time that the last stop on the trip segment can occur.
+
+|*Lgh Miles* |Trip segment miles.
+
+|*Lgh Number* |ID number assigned to the trip segment by the system.
+
+|*LghType1* |User-defined field that allow you to categorize the trip segment based on classifications set up previously by your company. You can use the *LghType1* label in the System Administration application to customize the field name and classification options for it.
+
+|*LghType2* |User-defined field that allow you to categorize the trip segment based on classifications set up previously by your company. You can use the *LghType2* label in the System Administration application to customize the field name and classification options for it.
+
+|*LH Pay* a|
+Estimated line haul pay for the trip. The value comes from the *Linehaul Cost* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its String1 field.
+
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Line Haul* a|
+Line haul charge calculated when the order was prerated. The value comes from the *Linehaul* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its String1 field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Linehaul* |Line haul charge for a pre-rated order.
+
+|*Misc Chgs* a|
+Total dollar value of all accessorial charges for the trip, excluding any fuel surcharges that have been set up to display in the *Fuel* field. The value comes from the *Misc* *Acc* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its String1 field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Misc Pay* a|
+Estimated pay for all accessorials for the trip, other than the fuel surcharge. The value comes from the *Accessorial Cost* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its String1 field.
+
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Move #* |ID number for the physical movement of resources (driver/tractor/ trailer or carrier) from the origin site to the final destination.
+
+|*Next* a|
+Indicates whether the tractor's next trip is _Planned_ or _Unplanned._ The data shown here is determined by the entry in the ADVTRCPLANNING setting in the General Info Table. The options for that setting are:
+
+* _N_
+
++
+If the tractor's next trip is _Planned_ or _Dispatched_, show _Planned_ in the *Next* column. (default)
+
+* _Y_
+
++
+If the tractor's next trip is _Planned_, show _Planned_ in the *Next* column. If the tractor's next trip is _Dispatched_, show _Dispatched_ in the *Next* column.
+
+|*Next DRP City* a|
+City/state or province where the next scheduled drop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next DRP Cmp ID* a|
+ID of the company where the next scheduled drop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next DRP Company* a|
+Name of the company where the next scheduled drop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next DRP Date* a|
+Estimated date/time of the next scheduled drop.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next DRP Latest* |Shows the latest departure time from the next drop (LUL).
+
+|*Next DRP State* a|
+Abbreviation for the state/province where the next scheduled drop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next Event* |Event of tractor's next scheduled stop.
+
+|*Next PUP City* a|
+City/state or province where the next scheduled pickup is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next PUP Cmp ID* a|
+ID of the company where the next scheduled pickup is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next PUP Company* a|
+Name of the company where the next scheduled pickup is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next PUP Date* a|
+Estimated arrival date/time of the next scheduled pickup.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next PUP Latest* |Shows the latest departure time from the next pickup (LLD).
+
+|*Next PUP State* a|
+Abbreviation for the state/province where the next scheduled pickup is to occur.
+
+This column is available only when the General Info Table setting RunDRP has something other than Stops entered in the *String1* field.
+
+|*Next Stop City* a|
+City/state or province where the tractor's next stop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has Stops entered in the *String1* field.
+
+|*Next Stop Cmp ID* a|
+ID of the company where the tractor's next scheduled stop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has Stops entered in the *String1* field.
+
+|*Next Stop Company* a|
+Name of the company where the tractor's next stop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has Stops entered in the *String1* field.
+
+|*Next Stop Date* a|
+Estimated date/time where the tractor's next stop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has Stops entered in the *String1* field.
+
+|*Next Stop Of Total* |Next stop's position in the total number of scheduled stops on the trip.
+
+|*Next Stop State* a|
+Abbreviation for the state/province where the tractor's next stop is to occur.
+
+This column is available only when the General Info Table setting RunDRP has Stops entered in the *String1* field.
+
+|*Next Stp Event Code* |Event code of the tractor's next scheduled stop.
+
+|*Ord/Seg* a|
+Indicates whether the trip is split.
+
+* _Order_
+
++
+The trip will be performed by one set of resources.
+
+* _Segment_
+
++
+The trip will be performed by multiple sets of resources.
+
+|*Order #* |ID assigned to the customer's request for movement of goods or materials.
+
+|*Order Remark* |Free-form comments recorded in the *Remarks* field on the order header.
+
+|*Orig State* |Abbreviation for the state/province where the trip begins.
+
+|*Origin City* |City and state/province where the first event on the trip segment is to occur.
+
+|*Origin GeoLoc* |Free-form geographic identifier used when the origin company does not have a standard street address. Geo Locations are recorded in the company profile.
+
+|*Origin ID* |ID of the company where the first event is to occur.
+
+|*Origin Name* |Name of the company where the first event on the trip segment is to occur.
+
+|*Origin Region 1* |Dispatch region 1 of the origin company. Dispatch regions are established in the System Administration application and are used to categorize loads for operational purposes.
+
+|*Origin Region 2* |Dispatch region 2 of the origin company. Dispatch regions are established in the System Administration application and are used to categorize loads for operational purposes.
+
+|*Origin Region 3* |Dispatch region 3 of the origin company. Dispatch regions are established in the System Administration application and are used to categorize loads for operational purposes.
+
+
+|*Origin Region 4* |Dispatch region 4 of the origin company. Dispatch regions are established in the System Administration application and are used to categorize loads for operational purposes.
+
+|*P* a|
+
+*Priority* indicator signals the importance of the load. The color of the indicator is determined by the priority assigned to the trip (e.g., the entry made in the *Priority* field in the order header). The indicator will display in one of these colors:
+
+* _Red_
+
++
+Load has highest priority (of 1)
+
+* _Yellow_
+
++
+Load has been assigned a lower level priority (of 2 - 5)
+
+* _Green_
+
++
+Either a priority was never set for the load, or a priority of 6 or greater was assigned
+
+*Note:* A default priority can be associated with the Order By company in the File Maintenance module. The default is automatically assigned to any order placed by the Order By company.
+
+|*Pay Type* a|
+Pay type used to create the line haul pay detail for the carrier assigned to the available trip. The value comes from the *Pay Method* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+. Possible values in the *Pay Method* field are determined by the entries made for the [Dispatch]BrokerPayTypeItemCode setting in your TTS50.ini file.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Priority* |Rank assigned to the order to signify its importance.
+
+|*Profile Trailer 1* |ID of primary trailer assigned to the last stop completed by the tractor.
+
+|*Pup* |ID of the second trailer assigned to the trip (if applicable).
+
+|*Ref Number* |First reference number recorded in the order header.
+
+|*Ref Type* |First reference number type recorded in the order header.
+
+|*RevType 1* a|
+User-defined *RevType1* classification to which the order was assigned.
+
+*Notes:*
+
+[arabic]
+. To help your company track revenue brought in by different types of loads, TMWSuite allows you to classify your loads into four revenue categories that your company defines for its own use. These categories are called _Revenue_ _Types_.
+. The field name displayed for *RevType1* is determined by prior setup in the *RevType1* label in the System Administration application. *RevType1* is further subdivided into revenue classes. The classes listed for this field also are determined in the in the *RevType1* label in System Administration application.
+
+|*RevType 2* |User-defined *RevType2* classification to which the order was assigned.
+
+|*RevType 3* |User-defined *RevType3* classification to which the order was assigned.
+
+|*RevType 4* |User-defined *RevType4* classification to which the order was assigned.
+
+|*Seg Ref* |First reference number type selected for a segment of a split trip.
+
+|*Seg Reftype* |First reference number recorded for a segment of a split trip.
+
+|*Ship State* |Abbreviation for the state/province where the first pickup is located.
+
+|*Shipper City* |City and state/province location of the first pickup.
+
+|*Shipper ID* |ID of the company where the first pickup occurs.
+
+|*Shipper Name* |Name of the company where the first pickup occurs.
+
+|*Shpmnts* |Number of orders consolidated on a trip segment.
+
+|*Start Dt/Tm* |Date and time that the first event on the trip segment is scheduled to occur.
+
+|*Status* a|
+Current dispatch status of the trip. The statuses that display depend on how you have defined your views. The statuses are:
+
+* _Available_
+
++
+Trip is ready for dispatch; resources have not been pre-assigned.
+
+* _Planned_
+
++
+Resources have been pre-assigned, but the assignment has not yet been communicated to the driver/carrier.
+
+* _Dispatched_
+
++
+Resources have been pre-assigned, and the assignment has been communicated to the driver/carrier.
+
+* _Started_
+
++
+Trip is in progress. The arrival at the first stop has been actualized.
+
+* _Completed_
+
++
+Resources have reached the trip destination. The arrival at the last stop has been actualized.
+
++
+*Note:* Trips with a _Completed_ status will never display on the *Available Trips* Grid.
+
+|*Stops* |Total number of stops recorded for the trip segment.
+
+|*Sug* a|
+Profit for the trip. The value comes from the *Sug'd Spend* field in the Advanced Carrier Selection window. The value is calculated as:
+
+Total Charge - (Total Charge x Broker Percent)
+
+*Notes:*
+
+[arabic]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*T* a|
+Color-coded indicator representing the TotalMail status for the trip:
+
+* _Green_
+
++
+TotalMail macros are successful.
+
+* _Yellow_
+
++
+A TotalMail macro has failed for this trip.
+
+* _Red_
+
++
+The driver has indicated that he is late via a TotalMail macro.
+
+*Note*: You can right-click a red or a yellow indicator to set it to green.
+
+|*T'fer Move* |Movement number that an order was cross-docked to or from.
+
+|*Target* a|
+Target profit for the selected trip. The value comes from the *Target* field in the Advanced Carrier Selection window, and is calculated by multiplying the total charge by the broker percent.
+
+*Notes:*
+
+. The total charge value is the combined line haul, accessorial, and fuel revenue for the trip.
+
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Teamleader* |Lead driver's current team leader (if applicable).
+
+a|*TM Status* a|
+
+[cols="1,4"]
+!===
+! Option ! Description
+
+!_NOSENT_ !No TotalMail form has been sent or received for the trip.
+
+!_SENT_ !A Pre Assignment or Load Assignment TotalMail form has been sent to the tractor assigned to the trip, and no form has yet been received from that tractor for the trip.
+
+!_ACCEPT_ a!Driver of the tractor assigned to the trip has submitted the _Accept Trip_ form.
+
+*Note:* Typically, drivers send the _Accept Trip_ form only in response to a _Pre Assignment_ form.
+
+!_REJECT_ !Driver of the tractor assigned to the trip has submitted the _Decline Trip_ form.
+
+*Note:* Typically, drivers send the _Decline Trip_ form only in response to a _Pre Assignment_ form.
+
+!_OK_ !At least one form for this trip has been received from the tractor assigned to this trip, and data from the form most recently received has been updated to TMWSuite.
+
+!_ERROR_ !TotalMail was not able to update TMWSuite with the data in the most recently received form received from the tractor assigned to the trip.
+
+*Note:* Detailed information on the error can be viewed by opening the Error Information window for the form in the TotalMail Viewer.
+
+!_LATE_ !_Load Late_ form has been received from the tractor assigned to the trip.
+
+*Note:* This status code is used only in response to the _Load Late_ form. It will not be used if the tractor submits a stop event form after the scheduled event time.
+!===
+
+|*Top Spend* a|
+Suggested maximum pay for the trip. The value comes from the *Top Spend* field in the Advanced Carrier Selection window.
+
+Notes:
+
+[arabic]
+. The amount shown depends on whether there are accessorial charges on the order.
+
+** When there are accessorial charges on the order, the value shown is the line haul value.
+
+** When there are no accessorial charges on the order, the value shown is calculated by subtracting the dollar amount of the target profit from the total charge.
+
+[arabic, start=2]
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Total* a|
+Total dollar value of all charges on the prerated order. The value comes from the *Total Charge* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Total Carrier Pay* a|
+Carrier pay.
+
+*Notes:*
+
+[arabic]
+. Carrier pay can be recorded in the Pay Detail Maintenance window.
+. You can also record the carrier's estimated pay in the Advanced Carrier Selection window's Linehaul Cost, Fuel Cost, and Accessorial Cost fields.
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Total Pay* a|
+Estimated total pay for the trip. The value comes from the *Est* *Settlement* field in the Advanced Carrier Selection window.
+
+*Notes:*
+
+. This field is populated only when the ACSInfoInWorksheet General Info Table setting has a value of Y in its *String1* field.
+
+. To access the Advanced Carrier Selection window, you must be licensed for the Enhanced Brokerage module. For information, contact your Trimble Transportation Sales representative.
+
+|*Tour Num* a|
+System-assigned ID of TotalMail Tour Macro that sends multiple orders to one tractor.
+
+*Note:* A tour is a group of moves. The Tour macro is used to accept/reject that group of moves. When the tour is accepted, the system generates the Tour Number.
+
+|*Tractor* |ID of the tractor assigned to the trip.
+
+|*Trailer* |ID of the primary trailer assigned to the trip.
+
+|*Trailer 2* |ID of the secondary trailer assigned to the trip.
+
+|*TrcType1* |Assigned tractor's *TrcType1* classification.
+
+|*TrcType2* |Assigned tractor's *TrcType2* classification.
+
+|*TrcType3* |Assigned tractor's *TrcType3* classification.
+
+|*TrcType4* |Assigned tractor's *TrcType4* classification.
+
+|*Triptime* |Compilation of the load time, unload time, and drive time.
+
+|*TrlType1* a|
+Assigned trailer's *TrlType1* classification.
+
+*Notes:*
+
+[arabic]
+. To help your company track revenue brought in by different types of trailers, TMWSuite allows you to classify your trailers into four trailer categories that your company defines for its own use. These categories are called Trailer Types.
+. The field name displayed for *TrlType1* is determined by prior setup of this class in the *TrlType1* label in the System Administration application. *TrlType1* is further subdivided into trailer classes. The classes listed for this field are also determined in the *TrlType1* label in the System Administration application.
+
+|*TrlType4* |If a trailer is assigned to the order, this field displays the trailer's Trailer Type 4 classification.
+
+|*Unload Time* |Scheduled departure date/time of the final drop.
+
+|*Volume* |Cargo's volume.
+
+|*VolUnit* |Unit of measurement that the volume amount is based on.
+
+|*Wash Status* |Indicates whether the trailer assigned to the trip has been washed.
+
+|*Weight* |Total weight of the cargo.
+
+|*Wt Unit* |Unit of measure used to determine the weight.
+
+|===
