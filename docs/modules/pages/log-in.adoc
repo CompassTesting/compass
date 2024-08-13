@@ -1,0 +1,7 @@
+= Log in to Connected Maintenance
+
+. Open TMT Fleet Maintenance.
+. Go to *Menu > Activities > Connected Maintenance* or select the *Connected Maintenance* tile. The Trimble Sign In page opens.
+. Enter your Trimble ID username. If you do not have a Trimble ID, select *Create a Trimble ID* and follow the instructions.
+. Select *Next*. The Notification page opens. For more information, see xref:use-notifications.adoc[Use Notifications].
+

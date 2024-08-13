@@ -1,0 +1,9 @@
+= Log out of Trimble Connected Maintenance
+
+As a best practice, Trimble recommends that you always log out of Connected Maintenance when you have finished working.
+
+. Click your profile icon.
++
+image:image17.png[, 126,139]
+
+. Select *Logout*.
