@@ -4,6 +4,8 @@ When the repair(s) are completed, TravelCenters of America (TA) sends data to TM
 
 image:image30.png[, 600,68]
 
+Testing line added
+
 . TMT receives the _Finalized Awaiting_ notification from TA. TMT moves the repair request into _PO Requested_ status and sends an email to the appropriate TMT email group.
 
 . A member of the TMT email group opens the email, selects the VRO link to open it, and reviews the *Final Invoice Detail* tab in the repair request. They may also select the VRO from the VRO Listing.
